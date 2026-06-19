@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://masoumesign86.github.io/app-official-aiyouxi-com-cn/sitemap.xml
