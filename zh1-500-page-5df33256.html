@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500万彩票网 · 知识库与导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f5f3f0;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+            line-height: 1.65;
+            color: #2c2b2a;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 深色头图 */
+        .hero {
+            background: linear-gradient(145deg, #1a1c1e 0%, #2d2e2f 100%);
+            color: #ece8e1;
+            padding: 3.5rem 1.5rem 3rem;
+            text-align: center;
+            border-bottom: 4px solid #d4b78c;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 450;
+            letter-spacing: 2px;
+            margin-bottom: 0.75rem;
+            word-break: break-word;
+        }
+
+        .hero .sub {
+            font-size: 1.05rem;
+            max-width: 680px;
+            margin: 0 auto 1.2rem;
+            opacity: 0.8;
+            line-height: 1.7;
+        }
+
+        .hero .meta-badge {
+            display: inline-block;
+            background: rgba(212, 183, 140, 0.18);
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: #d4b78c;
+            border: 1px solid rgba(212, 183, 140, 0.25);
+        }
+
+        /* 主内容区 — 浅色 */
+        .container {
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 2.5rem 1.8rem 4rem;
+            flex: 1;
+        }
+
+        /* 目录感网格 */
+        .directory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.6rem;
+            margin-bottom: 2.8rem;
+        }
+
+        .dir-card {
+            background: white;
+            border-radius: 18px;
+            padding: 1.6rem 1.4rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.03);
+            border-left: 4px solid #d4b78c;
+            transition: transform 0.15s ease, box-shadow 0.2s;
+        }
+
+        .dir-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .dir-card h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #1f1e1d;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.3px;
+        }
+
+        .dir-card p {
+            font-size: 0.92rem;
+            color: #5a5957;
+            margin-bottom: 0.3rem;
+        }
+
+        .dir-card .tag {
+            display: inline-block;
+            background: #edebe7;
+            padding: 0.15rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            color: #4a4a48;
+            margin-top: 0.5rem;
+        }
+
+        /* 说明区 + 提示区 交错 */
+        .info-section {
+            background: white;
+            border-radius: 22px;
+            padding: 2rem 2rem 2.2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e6e2db;
+        }
+
+        .info-section h2 {
+            font-size: 1.35rem;
+            font-weight: 460;
+            color: #292725;
+            border-bottom: 1px solid #e2ddd5;
+            padding-bottom: 0.6rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-section h2 span {
+            background: #d4b78c;
+            color: #1a1c1e;
+            font-size: 0.75rem;
+            border-radius: 30px;
+            padding: 0.15rem 0.9rem;
+            font-weight: 500;
+        }
+
+        .info-section p, .info-section li {
+            font-size: 0.98rem;
+            color: #3b3a38;
+        }
+
+        .info-section ul {
+            padding-left: 1.4rem;
+            margin-top: 0.4rem;
+        }
+
+        .info-section li {
+            margin-bottom: 0.3rem;
+        }
+
+        .highlight-box {
+            background: #faf8f5;
+            border-radius: 18px;
+            padding: 1.4rem 1.6rem;
+            margin: 1.2rem 0 0.8rem;
+            border-left: 4px solid #b0976e;
+        }
+
+        .highlight-box strong {
+            color: #1f1c18;
+        }
+
+        /* 提示区 (不同背景) */
+        .tip-area {
+            background: #f2efe9;
+            border-radius: 24px;
+            padding: 1.8rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #ddd8cf;
+        }
+
+        .tip-area h3 {
+            font-size: 1.15rem;
+            font-weight: 480;
+            color: #2b2824;
+            margin-bottom: 0.65rem;
+        }
+
+        .tip-area p {
+            color: #4b4844;
+            font-size: 0.96rem;
+        }
+
+        .tip-area .sig {
+            margin-top: 0.8rem;
+            font-style: italic;
+            color: #6f6a63;
+        }
+
+        /* 相关信息区 */
+        .rel-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #ddd8cf;
+        }
+
+        .rel-info-item {
+            background: white;
+            border-radius: 16px;
+            flex: 1 1 180px;
+            padding: 1.2rem 1.2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            border: 1px solid #e7e2d9;
+        }
+
+        .rel-info-item h4 {
+            font-weight: 450;
+            font-size: 0.95rem;
+            color: #383430;
+            margin-bottom: 0.2rem;
+        }
+
+        .rel-info-item p {
+            font-size: 0.88rem;
+            color: #69655e;
+        }
+
+        /* 链接样式 */
+        a {
+            color: #a57c4a;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            font-weight: 470;
+            transition: border-color 0.1s, color 0.1s;
+        }
+
+        a:hover {
+            color: #7d5f38;
+            border-bottom-color: #7d5f38;
+        }
+
+        .inline-link {
+            border-bottom: 1px solid rgba(165, 124, 74, 0.3);
+        }
+
+        .inline-link:hover {
+            border-bottom-color: #7d5f38;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            .hero {
+                padding: 2.5rem 1rem 2rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .container {
+                padding: 1.8rem 1rem 3rem;
+            }
+            .directory-grid {
+                grid-template-columns: 1fr;
+            }
+            .info-section {
+                padding: 1.5rem 1.2rem;
+            }
+            .tip-area {
+                padding: 1.4rem 1.2rem;
+            }
+            .rel-info {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+        }
+
+        /* 底部留白 */
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #8b867e;
+            border-top: 1px solid #e2ddd5;
+            padding-top: 1.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 -->
+    <header class="hero">
+        <h1>500万彩票网 · 信息指引</h1>
+        <p class="sub">面向常识与参考的知识型页面，提供稳定入口与基础说明。内容保持真实、节制，无诱导倾向。</p>
+        <span class="meta-badge">知识库入口 · 目录式布局</span>
+    </header>
+
+    <main class="container">
+
+        <!-- 目录感卡片网格  -->
+        <div class="directory-grid">
+            <div class="dir-card">
+                <h3>📋 平台概述</h3>
+                <p>了解网站定位、服务范围与内容边界。作为彩票信息类站点，<a href="https://zh1-500.com" class="inline-link">500万彩票网</a>提供数据参考与资讯整合。</p>
+                <span class="tag">基础信息</span>
+            </div>
+            <div class="dir-card">
+                <h3>📊 数据参考</h3>
+                <p>涵盖历史开奖号码、走势图表、玩法说明等内容。数据仅供个人学习与交流，不构成任何操作建议。</p>
+                <span class="tag">统计</span>
+            </div>
+            <div class="dir-card">
+                <h3>📑 资讯分类</h3>
+                <p>聚合行业动态、规则解读、政策提示等栏目。所有信息均来自可查证的公开来源，保持客观中立。</p>
+                <span class="tag">索引</span>
+            </div>
+            <div class="dir-card">
+                <h3>🔐 安全提示</h3>
+                <p>注意辨别非官方渠道，认准唯一域名。任何要求私下转账、付费预测的行为均需警惕。</p>
+                <span class="tag">须知</span>
+            </div>
+        </div>
+
+        <!-- 说明区  -->
+        <section class="info-section">
+            <h2>📌 页面说明 <span>STABLE</span></h2>
+            <p>本页面向希望快速了解 <a href="https://zh1-500.com" class="inline-link">500万彩票网</a> 的用户提供一个结构化的知识入口。所有内容均基于公开可查的信息进行整理，不包含任何形式的诱导访问、夸大收益或违规承诺。网站本身定位于彩票信息聚合与数据展示，不涉及任何线上博彩交易或代理服务。</p>
+            <div class="highlight-box">
+                <strong>建议：</strong> 首次访问者可以先浏览目录卡片中的分类，再根据兴趣进入对应板块。数据区的历史开奖号码和走势图需要一定理解基础，建议配合玩法规则一起查看。
+            </div>
+            <p style="margin-top: 0.6rem;">如需直接前往首页，可使用 <a href="https://zh1-500.com" class="inline-link">500万彩票网</a> 作为地址入口。该域名长期稳定，所有内容更新均在该站点内完成。</p>
+        </section>
+
+        <!-- 提示区  -->
+        <div class="tip-area">
+            <h3>📣 使用提示</h3>
+            <p>· 所有开奖数据均来自官方公开信息，本站仅作转载与整理，不对其绝对准确性担保。<br>
+               · 页面中出现的任何“预测”“趋势”类表述均基于历史统计，不具备实际指导价值。<br>
+               · 请勿轻信任何以本站名义进行的私下联系、收费群组或非官方链接。</p>
+            <p class="sig">— 保持理性，将彩票视为一种娱乐形式，而非投资手段。</p>
+        </div>
+
+        <!-- 相关信息区  -->
+        <div class="rel-info">
+            <div class="rel-info-item">
+                <h4>📎 常见问题</h4>
+                <p>如何查询历史号码？怎样解读走势图？账户相关操作？可查阅站内FAQ页面。</p>
+            </div>
+            <div class="rel-info-item">
+                <h4>📘 术语参考</h4>
+                <p>和值、跨度、奇偶比、大小分布……基础术语说明有助于快速看懂数据。</p>
+            </div>
+            <div class="rel-info-item">
+                <h4>🔗 相关资源</h4>
+                <p>部分外部参考数据源：中国体彩网、中国福彩网、省级彩票中心公告等。</p>
+            </div>
+        </div>
+
+        <!-- 底部安静提示 -->
+        <div class="footer-note">
+            ... 本页为知识库入口式介绍页面，信息更新于近期。内容仅供参考，不构成任何实质性建议。
+        </div>
+
+    </main>
+</body>
+</html>
