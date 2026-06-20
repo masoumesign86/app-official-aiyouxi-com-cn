@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>资料索引 · 星空体育app</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #f9ebd2 0%, #f5d6b3 45%, #ecc19a 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem 1rem 3rem;
+            color: #2d241b;
+        }
+        .wrapper {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* 顶部导航 — 轻量信息杆 */
+        .top-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 247, 236, 0.75);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            padding: 0.8rem 1.6rem;
+            border-radius: 48px;
+            margin-bottom: 2.6rem;
+            box-shadow: 0 4px 12px rgba(150, 100, 60, 0.08);
+        }
+        .brand-chip {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 480;
+            font-size: 1.1rem;
+            letter-spacing: 0.2px;
+        }
+        .brand-chip span {
+            background: #b48b6a;
+            color: #fef7ec;
+            width: 8px;
+            height: 8px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-right: 4px;
+        }
+        .nav-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem 1.2rem;
+            font-size: 0.9rem;
+        }
+        .nav-tags a {
+            color: #4d3627;
+            text-decoration: none;
+            padding: 0.2rem 0.1rem;
+            border-bottom: 2px solid transparent;
+            transition: border 0.2s;
+        }
+        .nav-tags a:hover {
+            border-bottom-color: #b48b6a;
+        }
+        .nav-tags .active-link {
+            border-bottom-color: #9f7b5e;
+            font-weight: 500;
+        }
+
+        /* 核心 hero — 资料整理视角 */
+        .hero-section {
+            background: #fffcf7;
+            border-radius: 48px;
+            padding: 2.2rem 2rem 2.6rem;
+            box-shadow: 0 12px 28px rgba(110, 70, 40, 0.08);
+            margin-bottom: 2.8rem;
+            border: 1px solid rgba(255, 235, 210, 0.5);
+        }
+        .hero-section h1 {
+            font-size: 2.2rem;
+            font-weight: 520;
+            letter-spacing: -0.3px;
+            line-height: 1.2;
+            margin-bottom: 0.6rem;
+            color: #2a1d14;
+        }
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 2rem;
+            font-size: 0.95rem;
+            color: #6b5542;
+            margin: 0.3rem 0 1.2rem;
+        }
+        .hero-meta span {
+            background: #f0e1d0;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            color: #3d2c1e;
+        }
+        .hero-text {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            max-width: 720px;
+            margin: 1.6rem 0 0.2rem;
+        }
+        .hero-text a {
+            color: #9f6e47;
+            font-weight: 480;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1.5px;
+            text-decoration-color: #dbbc9b;
+            transition: color 0.15s;
+        }
+        .hero-text a:hover {
+            color: #7b5436;
+        }
+        .index-stat {
+            display: inline-block;
+            background: #e9d7c0;
+            border-radius: 40px;
+            padding: 0.2rem 1.2rem;
+            font-size: 0.8rem;
+            color: #3a2b1d;
+            margin-top: 0.6rem;
+        }
+
+        /* 三个场景模块 — 卡片网格 */
+        .scene-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            margin-bottom: 3rem;
+        }
+        @media (max-width: 750px) {
+            .scene-grid {
+                grid-template-columns: 1fr;
+                gap: 1.4rem;
+            }
+        }
+        .scene-card {
+            background: #fffbf6;
+            border-radius: 32px;
+            padding: 1.8rem 1.6rem 2rem;
+            box-shadow: 0 6px 18px rgba(140, 95, 55, 0.06);
+            transition: transform 0.15s, box-shadow 0.2s;
+            border: 1px solid #f2e2d0;
+        }
+        .scene-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 26px rgba(120, 80, 45, 0.10);
+        }
+        .scene-card h3 {
+            font-size: 1.3rem;
+            font-weight: 470;
+            letter-spacing: -0.2px;
+            margin-bottom: 0.8rem;
+            color: #3a2a1b;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .scene-card h3 i {
+            font-style: normal;
+            background: #dabd9e;
+            color: #2f1f12;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+        .scene-card p {
+            font-size: 0.96rem;
+            line-height: 1.55;
+            color: #3f3226;
+            margin-bottom: 0.9rem;
+        }
+        .scene-tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 0.7rem;
+            margin-top: 0.3rem;
+            font-size: 0.85rem;
+        }
+        .scene-tag-list span {
+            background: #efe3d5;
+            padding: 0.2rem 0.9rem;
+            border-radius: 40px;
+            color: #3c2b1c;
+        }
+
+        /* 常见说明 / 摘要 FAQ */
+        .faq-brief {
+            background: #fffcf7;
+            border-radius: 48px;
+            padding: 1.8rem 2rem 2.2rem;
+            margin-bottom: 2.4rem;
+            box-shadow: 0 8px 20px rgba(110, 75, 45, 0.06);
+            border: 1px solid #f3e2cf;
+        }
+        .faq-brief h2 {
+            font-size: 1.5rem;
+            font-weight: 470;
+            letter-spacing: -0.2px;
+            margin-bottom: 1.4rem;
+            color: #2f2015;
+        }
+        .faq-item {
+            margin-bottom: 1.1rem;
+        }
+        .faq-item strong {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+            color: #3b2b1c;
+            font-size: 1rem;
+        }
+        .faq-item p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #4c3a2b;
+            max-width: 700px;
+        }
+        .faq-item a {
+            color: #9f6e47;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #d1b294;
+        }
+
+        .info-footnote {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #5d4a38;
+            background: #f5e8da;
+            padding: 0.5rem 1.2rem;
+            border-radius: 80px;
+            display: inline-block;
+            border: 1px solid #e4ceb6;
+        }
+
+        .footer-note {
+            margin-top: 1.8rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6b5540;
+            background: rgba(255, 245, 230, 0.5);
+            backdrop-filter: blur(4px);
+            border-radius: 60px;
+            padding: 0.8rem 1.6rem;
+            display: inline-block;
+            width: auto;
+            border: 1px solid rgba(210, 180, 150, 0.3);
+        }
+
+        /* 通用 */
+        hr {
+            border: none;
+            border-top: 2px dashed #dcc9b4;
+            margin: 1.2rem 0;
+            opacity: 0.5;
+        }
+        .inline-link-em {
+            color: #9f6e47;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+
+    <!-- 顶部导航 -->
+    <div class="top-bar">
+        <div class="brand-chip">
+            <span></span> 资料·索引
+        </div>
+        <div class="nav-tags">
+            <a href="#" class="active-link">整理</a>
+            <a href="#">场景</a>
+            <a href="#">说明</a>
+            <a href="#">归档</a>
+        </div>
+    </div>
+
+    <!-- Hero 介绍 — 从信息整理切入 -->
+    <div class="hero-section">
+        <h1>把体育资料 &nbsp;·&nbsp; 收拢成线索</h1>
+        <div class="hero-meta">
+            <span>📋 信息卡片</span>
+            <span>🏷️ 3 个场景模块</span>
+            <span>📎 常见索引</span>
+        </div>
+        <div class="hero-text">
+            <p>平时看赛事、找数据、翻动态，免不了在各个页面之间来回跳。这个页面就是为了把那些分散的线索拢一拢——从赛前分析到赛后讨论，从联赛档案到运动科普，尽量用轻量的方式归类。</p>
+            <p>你可以把这里当作一个资料整理的起点。很多内容都围绕 <a href="https://new-starryskyapp.com">星空体育app</a> 来组织，它本身也是一个聚合体育信息的地方。下面三个小模块就是平时用得比较多的场景，每个都带了一点标签和说明。</p>
+        </div>
+        <div class="index-stat">当前索引 · 场景分类 3 · 常见条目 6</div>
+    </div>
+
+    <!-- 三个场景模块 -->
+    <div class="scene-grid">
+        <div class="scene-card">
+            <h3><i>①</i> 赛前·信息梳理</h3>
+            <p>比赛日之前把对阵、伤病、天气、历史数据摊开，比对着看。适合自己列个简易清单，或者参考社区里整理的预热帖。</p>
+            <div class="scene-tag-list">
+                <span>首发预测</span>
+                <span>交锋记录</span>
+                <span>伤停简报</span>
+                <span>裁判统计</span>
+            </div>
+        </div>
+        <div class="scene-card">
+            <h3><i>②</i> 实时·动态聚合</h3>
+            <p>文字直播、关键事件、数据变化，一边看一边随手标记。很多人习惯开两个窗口：一个盯画面，一个刷实时汇总。</p>
+            <div class="scene-tag-list">
+                <span>文字流</span>
+                <span>事件时间线</span>
+                <span>热图</span>
+                <span>换人分析</span>
+            </div>
+        </div>
+        <div class="scene-card">
+            <h3><i>③</i> 赛后·归档备注</h3>
+            <p>比分、集锦、评分、长文复盘。赛后整理一下关键词和亮点，下次回顾的时候一目了然。也适合做个人观赛笔记。</p>
+            <div class="scene-tag-list">
+                <span>全场集锦</span>
+                <span>评分表</span>
+                <span>战报链接</span>
+                <span>讨论串</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 常见说明 / FAQ 摘要 -->
+    <div class="faq-brief">
+        <h2>📌 使用中遇到的几个问题</h2>
+        <div class="faq-item">
+            <strong>▪ 这些信息从哪里来？</strong>
+            <p>大多来自公开的体育数据源、联赛官网以及社区贡献。建议以 <a href="https://new-starryskyapp.com">星空体育app</a> 作为主要聚合入口，里面的信息流更新比较快，适合做日常参考。</p>
+        </div>
+        <div class="faq-item">
+            <strong>▪ 场景模块里的标签是固定的吗？</strong>
+            <p>每个模块下面的标签只是一种常见分类，实际使用的时候可以按自己的习惯调整。比如赛前板块也可以加上“天气影响”“旅途距离”之类的细项，灵活就好。</p>
+        </div>
+        <div class="faq-item">
+            <strong>▪ 比赛结束后这些资料还有用吗？</strong>
+            <p>赛后归档本身就是资料整理的一环。很多体育迷会把关键场次的数据、截图、评论保存下来，过个赛季再翻出来对比，挺有意思的。</p>
+        </div>
+        <div class="faq-item">
+            <strong>▪ 想自己整理一份观赛索引，有什么建议？</strong>
+            <p>从你最常关注的联赛开始，挑 3～5 个维度（比如赛程、积分、射手、转会），用表格或者卡片记录。工具不重要，持续更新才关键。</p>
+        </div>
+        <div class="info-footnote">
+            ⚡ 以上说明基于日常使用习惯整理，不构成任何建议或保证。
+        </div>
+    </div>
+
+    <!-- 结尾轻提示 -->
+    <div style="display: flex; justify-content: center;">
+        <div class="footer-note">
+            📂 资料索引 · 内容持续微调 &nbsp;·&nbsp; 最近更新 2025
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
